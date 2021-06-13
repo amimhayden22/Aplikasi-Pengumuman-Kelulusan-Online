@@ -41,9 +41,9 @@
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo mr-auto"><a href="index.html">APeK Online</a></h1>
+      <h1 class="logo mr-auto"><a href="{{ url('/') }}">APeK Online</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo mr-auto"><img src="frontend/assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      {{-- <!-- <a href="{{ url('/') }}" class="logo mr-auto"><img src="frontend/assets/img/logo.png" alt="" class="img-fluid"></a>--> --}}
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
@@ -54,7 +54,7 @@
         </ul>
       </nav><!-- .nav-menu -->
 
-      <a href="#about" class="get-started-btn scrollto">Daftar / Login</a>
+      <a href="#about" class="get-started-btn scrollto">Login</a>
 
     </div>
   </header><!-- End Header -->
