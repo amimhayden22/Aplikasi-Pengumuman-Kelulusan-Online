@@ -54,7 +54,7 @@
         </ul>
       </nav><!-- .nav-menu -->
 
-      <a href="#about" class="get-started-btn scrollto">Login</a>
+      <a href="{{ route('login') }}" class="get-started-btn scrollto">Login</a>
 
     </div>
   </header><!-- End Header -->
