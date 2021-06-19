@@ -18,15 +18,16 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/dashboard', function() {
-    return view('dashboard.index');
-});
-Route::prefix('/ini-dashboard')->group(function () {
-    Route::resources([
-        'grades'    => GradeController::class,
-        'students'  => StudentController::class,
-        'teachers'  => TeacherController::class,
-        'users'     => UserController::class,
-    ]);
+Route::middleware(['auth'])->group(function () {
+    Route::prefix('/dashboard')->group(function () {
+        Route::get('/', function() {
+            return view('dashboard.index');
+        });
+        Route::resources([
+            'grades'    => GradeController::class,
+            'students'  => StudentController::class,
+            'teachers'  => TeacherController::class,
+            'users'     => UserController::class,
+        ]);
+    });
 });

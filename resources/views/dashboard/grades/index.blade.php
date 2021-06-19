@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.app')
 @section('title')
-Students
+Grades
 @endsection
 @section('style')
 <link rel="stylesheet" href="{{ asset('backend/modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -10,20 +10,20 @@ Students
 <div class="main-content">
   <section class="section">
     <div class="section-header">
-      <h1>Students</h1>
+      <h1>Grades</h1>
       <div class="section-header-button">
-        <a href="{{ route('students.create') }}" class="btn btn-primary">Add New</a>
+        <a href="{{ route('grades.create') }}" class="btn btn-primary">Add New</a>
       </div>
       <div class="section-header-breadcrumb">
         <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-        <div class="breadcrumb-item">Students</div>
+        <div class="breadcrumb-item">Grades</div>
       </div>
     </div>
 
     <div class="section-body">
-      <h2 class="section-title">Table Student</h2>
+      <h2 class="section-title">Table Grade</h2>
       <p class="section-lead">
-        You can manage student data on this page
+        You can manage grade data on this page
       </p>
 
       <div class="row">
@@ -38,11 +38,8 @@ Students
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>NISN</th>
                       <th>Name</th>
-                      <th>Birth of Day</th>
-                      <th>Grade</th>
-                      <th>Attachment</th>
+                      <th>Created at</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -50,20 +47,17 @@ Students
                     @php
                         $no = 1;
                     @endphp
-                    @foreach ($students as $student)
+                    @foreach ($grades as $grade)
                     <tr>
                       <td>
                         {{ $no++ }}
                       </td>
-                      <td>{{ $student->nisn }}</td>
-                      <td>{{ $student->name }}</td>
-                      <td>{{ $student->date_of_birth }}</td>
-                      <td>{{ $student->grade_id }}</td>
-                      <td>{{ $student->attachment }}</td>
+                      <td>{{ $grade->name }}</td>
+                      <td>{{ $grade->created_at }}</td>
                       <td>
-                        <a href="#" class="btn btn-info"><i class="fas fa-eye" aria-hidden="true"></i> Detail</a>
-                        <a href="#" class="btn btn-warning"><i class="fas fa-pencil-alt" aria-hidden="true"></i> Edit</a>
-                        <a href="#" class="btn btn-danger"><i class="fas fa-trash" aria-hidden="true"></i>Delete</a>
+                          <a href="#" class="btn btn-info"><i class="fas fa-eye" aria-hidden="true"></i> Detail</a>
+                          <a href="#" class="btn btn-warning"><i class="fas fa-pencil-alt" aria-hidden="true"></i> Edit</a>
+                          <a href="#" class="btn btn-danger"><i class="fas fa-trash" aria-hidden="true"></i>Delete</a>
                       </td>
                     </tr>
                     @endforeach
