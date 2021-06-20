@@ -26,11 +26,21 @@ Students
         You can manage student data on this page
       </p>
 
+      @if (Session::has('success'))
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">Close</span>
+        </button>
+        <strong>Success!</strong> {{ Session('success') }}
+      </div>
+      @endif
+
       <div class="row">
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h4>Basic DataTables</h4>
+              <h4>Data Student</h4>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -58,12 +68,19 @@ Students
                       <td>{{ $student->nisn }}</td>
                       <td>{{ $student->name }}</td>
                       <td>{{ $student->date_of_birth }}</td>
-                      <td>{{ $student->grade_id }}</td>
-                      <td>{{ $student->attachment }}</td>
+                      <td>{{ $student->grades->name }}</td>
+                      <td><a href="{{ $student->attachment }}" target="_BLANK">Check File</a></td>
                       <td>
                         <a href="#" class="btn btn-info"><i class="fas fa-eye" aria-hidden="true"></i> Detail</a>
-                        <a href="#" class="btn btn-warning"><i class="fas fa-pencil-alt" aria-hidden="true"></i> Edit</a>
-                        <a href="#" class="btn btn-danger"><i class="fas fa-trash" aria-hidden="true"></i>Delete</a>
+                        <a href="{{ route('students.edit', $student->id) }}" class="btn btn-warning"><i class="fas fa-pencil-alt" aria-hidden="true"></i> Edit</a>
+                        <a href="#" class="btn btn-danger" 
+                        data-confirm="Really?|Are you sure you delete the student name:  <b>{{ $student->name }}</b>?"
+                        data-confirm-yes="event.preventDefault();
+                        document.getElementById('delete-student-{{ $student->id }}').submit();"><i class="fas fa-trash" aria-hidden="true"></i> Delete</a>
+                        <form id="delete-student-{{ $student->id }}" action="{{ route('students.destroy', $student->id) }}" method="POST" style="display: none;">
+                          @csrf
+                          @method('delete')
+                        </form>
                       </td>
                     </tr>
                     @endforeach

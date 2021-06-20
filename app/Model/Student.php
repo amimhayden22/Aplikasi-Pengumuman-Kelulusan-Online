@@ -10,4 +10,9 @@ class Student extends Model
     protected $fillable = [
         'nisn', 'name', 'date_of_birth', 'gender', 'attachment', 'grade_id'
     ];
+
+    public function grades()
+    {
+        return $this->belongsTo('App\Model\Grade', 'grade_id');
+    }
 }
