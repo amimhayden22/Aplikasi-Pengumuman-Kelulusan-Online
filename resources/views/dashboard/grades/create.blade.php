@@ -43,7 +43,7 @@ Create Grade
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="category">Grade Name</label>
+                                    <label for="name">Grade Name</label>
                                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                                     @if (count($errors) > 0)
                                         @error('name')
