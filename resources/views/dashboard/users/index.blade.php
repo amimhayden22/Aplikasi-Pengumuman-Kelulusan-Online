@@ -26,6 +26,16 @@ Users
         You can manage user data on this page
       </p>
 
+      @if (Session::has('success'))
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">Close</span>
+        </button>
+        <strong>Success!</strong> {{ Session('success') }}
+      </div>
+      @endif
+
       <div class="row">
         <div class="col-12">
           <div class="card">
@@ -60,8 +70,15 @@ Users
                         <td>{{ $user->created_at }}</td>
                         <td>
                           <a href="#" class="btn btn-info"><i class="fas fa-eye" aria-hidden="true"></i> Detail</a>
-                          <a href="#" class="btn btn-warning"><i class="fas fa-pencil-alt" aria-hidden="true"></i> Edit</a>
-                          <a href="#" class="btn btn-danger"><i class="fas fa-trash" aria-hidden="true"></i>Delete</a>
+                          <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning"><i class="fas fa-pencil-alt" aria-hidden="true"></i> Edit</a>
+                          <a href="#" class="btn btn-danger" 
+                          data-confirm="Really?|Are you sure you delete the user name:  <b>{{ $user->name }}</b>?"
+                          data-confirm-yes="event.preventDefault();
+                          document.getElementById('delete-user-{{ $user->id }}').submit();"><i class="fas fa-trash" aria-hidden="true"></i> Delete</a>
+                          <form id="delete-user-{{ $user->id }}" action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: none;">
+                            @csrf
+                            @method('delete')
+                          </form>
                         </td>
                       </tr>
                     @endforeach

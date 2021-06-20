@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -26,7 +27,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.users.create');
     }
 
     /**
@@ -37,7 +38,24 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name'      => 'required|string|max:255',
+            'username'  => 'required|max:50|unique:users',
+            'email'     => 'required|string|email|max:255|unique:users',
+            'password'  => 'required|string|min:8|confirmed',
+            'role'      => 'required|not_in:0',
+        ]);
+
+        $user = User::create([
+            'name'      => $request->name,
+            'username'  => $request->username,
+            'email'     => $request->email,
+            'password'  => Hash::make($request->password),
+            'role'      => $request->role,
+        ]);
+
+
+        return redirect()->route('users.create')->with('success', 'User has been successfully created');
     }
 
     /**
@@ -59,7 +77,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $editUser = User::findOrFail($id);
+        
+        return view('dashboard.users.edit', compact('editUser'));
     }
 
     /**
@@ -71,7 +91,25 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name'      => 'required|string|max:255',
+            'username'  => 'required|max:50',
+            'email'     => 'required|string|email|max:255',
+            'role'      => 'required|not_in:0',
+        ]);
+
+        $updateUser = [
+            'name'      => $request->name,
+            'username'  => $request->username,
+            'email'     => $request->email,
+            'password'  => Hash::make($request->password),
+            'role'      => $request->role,
+        ];
+
+        $user = User::findOrFail($id);
+        $user->update($updateUser);
+
+        return redirect()->route('users.index')->with('success', 'User has been successfully deleted');
     }
 
     /**
@@ -82,6 +120,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleteUser = User::findOrFail($id);
+        $deleteUser->delete();
+        
+        return redirect()->route('users.index')->with('success', 'User has been successfully deleted');
     }
 }
