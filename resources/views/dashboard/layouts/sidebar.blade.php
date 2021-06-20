@@ -8,14 +8,14 @@
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
-            <li class="nav-item active">
+            <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
                 <a href="{{ url('/dashboard') }}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
             </li>
             <li class="menu-header">Menu</li>
-            <li><a class="nav-link" href="{{ route('grades.index') }}"><i class="fas fa-school"></i> <span>Grades</span></a></li>
-            <li><a class="nav-link" href="{{ route('students.index') }}"><i class="fas fa-users"></i> <span>Students</span></a></li>
+            <li class="{{ Request::is('dashboard/grades') ? 'active' : '' }}"><a class="nav-link" href="{{ route('grades.index') }}"><i class="fas fa-school"></i> <span>Grades</span></a></li>
+            <li class="{{ Request::is('dashboard/students') ? 'active' : '' }}"><a class="nav-link" href="{{ route('students.index') }}"><i class="fas fa-users"></i> <span>Students</span></a></li>
             {{-- <li><a class="nav-link" href="{{ route('teachers.index') }}"><i class="fas fa-chalkboard-teacher"></i> <span>Teachers</span></a></li> --}}
-            <li><a class="nav-link" href="{{ route('users.index') }}"><i class="fas fa-user"></i> <span>Users</span></a></li>
+            <li class="{{ Request::is('dashboard/users') ? 'active' : '' }}"><a class="nav-link" href="{{ route('users.index') }}"><i class="fas fa-user"></i> <span>Users</span></a></li>
         </ul>
         
         <div class="p-3 hide-sidebar-mini">
