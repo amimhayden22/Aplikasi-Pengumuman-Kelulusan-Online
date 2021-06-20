@@ -19,13 +19,23 @@ Grades
         <div class="breadcrumb-item">Grades</div>
       </div>
     </div>
-
+    
     <div class="section-body">
       <h2 class="section-title">Table Grade</h2>
       <p class="section-lead">
         You can manage grade data on this page
       </p>
-
+      
+      @if (Session::has('success'))
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">Close</span>
+        </button>
+        <strong>Success!</strong> {{ Session('success') }}
+      </div>
+      @endif
+      
       <div class="row">
         <div class="col-12">
           <div class="card">
@@ -45,7 +55,7 @@ Grades
                   </thead>
                   <tbody>
                     @php
-                        $no = 1;
+                    $no = 1;
                     @endphp
                     @foreach ($grades as $grade)
                     <tr>
@@ -55,9 +65,16 @@ Grades
                       <td>{{ $grade->name }}</td>
                       <td>{{ $grade->created_at }}</td>
                       <td>
-                          <a href="#" class="btn btn-info"><i class="fas fa-eye" aria-hidden="true"></i> Detail</a>
-                          <a href="#" class="btn btn-warning"><i class="fas fa-pencil-alt" aria-hidden="true"></i> Edit</a>
-                          <a href="#" class="btn btn-danger"><i class="fas fa-trash" aria-hidden="true"></i>Delete</a>
+                        <a href="#" class="btn btn-info"><i class="fas fa-eye" aria-hidden="true"></i> Detail</a>
+                        <a href="{{ route('grades.edit', $grade->id) }}" class="btn btn-warning"><i class="fas fa-pencil-alt" aria-hidden="true"></i> Edit</a>
+                        <a href="#" class="btn btn-danger" 
+                        data-confirm="Really?|Are you sure you delete the grade name:  <b>{{ $grade->name }}</b>?"
+                        data-confirm-yes="event.preventDefault();
+                        document.getElementById('delete-grade-{{ $grade->id }}').submit();"><i class="fas fa-trash" aria-hidden="true"></i> Delete</a>
+                        <form id="delete-grade-{{ $grade->id }}" action="{{ route('grades.destroy', $grade->id) }}" method="POST" style="display: none;">
+                          @csrf
+                          @method('delete')
+                        </form>
                       </td>
                     </tr>
                     @endforeach

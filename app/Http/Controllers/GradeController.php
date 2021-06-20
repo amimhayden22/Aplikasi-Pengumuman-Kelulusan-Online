@@ -26,7 +26,7 @@ class GradeController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.grades.create');
     }
 
     /**
@@ -37,7 +37,15 @@ class GradeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+        $createGrade = Grade::create([
+            'name'  => $request->name,
+        ]);
+
+        return redirect()->route('grades.create')->with('success', 'Grade name has been successfully created');
     }
 
     /**
@@ -59,7 +67,9 @@ class GradeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $editGrade = Grade::findOrFail($id);
+
+        return view('dashboard.grades.edit', compact('editGrade'));
     }
 
     /**
@@ -71,7 +81,18 @@ class GradeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+        $updateGrade = [
+            'name'  => $request->name,
+        ];
+
+        $grade = Grade::findOrFail($id);
+        $grade->update($updateGrade);
+
+        return redirect()->route('grades.index')->with('success', 'Grade name has been successfully updated');
     }
 
     /**
@@ -82,6 +103,9 @@ class GradeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleteGrade = Grade::findOrFail($id);
+        $deleteGrade->delete();
+
+        return redirect()->route('grades.index')->with('success', 'Grade name has been successfully deleted');
     }
 }
