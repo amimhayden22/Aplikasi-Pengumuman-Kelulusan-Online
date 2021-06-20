@@ -14,7 +14,7 @@
             <li class="menu-header">Menu</li>
             <li><a class="nav-link" href="{{ route('grades.index') }}"><i class="fas fa-school"></i> <span>Grades</span></a></li>
             <li><a class="nav-link" href="{{ route('students.index') }}"><i class="fas fa-users"></i> <span>Students</span></a></li>
-            <li><a class="nav-link" href="{{ route('teachers.index') }}"><i class="fas fa-chalkboard-teacher"></i> <span>Teachers</span></a></li>
+            {{-- <li><a class="nav-link" href="{{ route('teachers.index') }}"><i class="fas fa-chalkboard-teacher"></i> <span>Teachers</span></a></li> --}}
             <li><a class="nav-link" href="{{ route('users.index') }}"><i class="fas fa-user"></i> <span>Users</span></a></li>
         </ul>
         

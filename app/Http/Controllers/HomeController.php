@@ -23,6 +23,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $countGrade = \App\Model\Grade::count();
+        $countStudent = \App\Model\Student::count();
+        $countUser = \App\User::count();
+
+        return view('dashboard.index', compact('countGrade','countStudent','countUser'));
     }
 }

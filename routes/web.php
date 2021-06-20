@@ -20,9 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 Route::middleware(['auth'])->group(function () {
     Route::prefix('/dashboard')->group(function () {
-        Route::get('/', function() {
-            return view('dashboard.index');
-        });
+        Route::get('/', 'HomeController@index');
         Route::resources([
             'grades'    => GradeController::class,
             'students'  => StudentController::class,
