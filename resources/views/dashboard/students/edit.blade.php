@@ -92,7 +92,7 @@ Create Student
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="gender">Grade</label>
+                                    <label for="gender">Gender</label>
                                     <select name="gender" id="gender" class="form-control @error('gender') is-invalid @enderror" required autocomplete="gender">
                                         <option holder>---- Select Gender ----</option>
                                         <option value="Laki-laki" @if($editStudent->gender == 'Laki-laki') selected @endif>Laki-laki</option>
@@ -107,6 +107,26 @@ Create Student
                                     @else
                                         <div class="invalid-feedback">
                                             Please fill in your gender
+                                        </div>
+                                    @endif
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="status">Status</label>
+                                    <select name="status" id="status" class="form-control @error('status') is-invalid @enderror" required autocomplete="status">
+                                        <option holder>---- Select Status ----</option>
+                                        <option value="Lulus" @if($editStudent->status == 'Lulus') selected @endif>Lulus</option>
+                                        <option value="Tidak Lulus" @if($editStudent->status == 'Tidak Lulus') selected @endif>Tidak Lulus</option>
+                                    </select>
+                                    @if (count($errors) > 0)
+                                        @error('status')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    @else
+                                        <div class="invalid-feedback">
+                                            Please fill in your status
                                         </div>
                                     @endif
                                 </div>

@@ -21,6 +21,7 @@ class CreateStudentsTable extends Migration
             $table->enum('gender', ['Laki-laki', 'Perempuan']);
             $table->text('attachment');
             $table->integer('grade_id');
+            $table->enum('status', ['Lulus', 'Tidak Lulus'])->default('Tidak Lulus');
             $table->timestamps();
         });
     }

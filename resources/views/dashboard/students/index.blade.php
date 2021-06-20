@@ -52,6 +52,7 @@ Students
                       <th>Name</th>
                       <th>Birth of Day</th>
                       <th>Grade</th>
+                      <th>Status</th>
                       <th>Attachment</th>
                       <th>Action</th>
                     </tr>
@@ -69,6 +70,7 @@ Students
                       <td>{{ $student->name }}</td>
                       <td>{{ $student->date_of_birth }}</td>
                       <td>{{ $student->grades->name }}</td>
+                      <td>{{ $student->status }}</td>
                       <td><a href="{{ $student->attachment }}" target="_BLANK">Check File</a></td>
                       <td>
                         <a href="#" class="btn btn-info"><i class="fas fa-eye" aria-hidden="true"></i> Detail</a>

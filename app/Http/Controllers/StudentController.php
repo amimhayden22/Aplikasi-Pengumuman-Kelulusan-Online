@@ -46,7 +46,8 @@ class StudentController extends Controller
             'date_of_birth' => 'required|date:yyyy-mm-dd',
             'gender'        => 'required|not_in:0',
             'attachment'    => 'required',
-            'grade_id'      => 'required|not_in:0'
+            'grade_id'      => 'required|not_in:0',
+            'status'        => 'required|not_in:0'
         ]);
 
         $createStudent = Student::create([
@@ -56,6 +57,7 @@ class StudentController extends Controller
             'gender'        => $request->gender,
             'attachment'    => $request->attachment,
             'grade_id'      => $request->grade_id,
+            'status'        => $request->status,
         ]);
 
         return redirect()->route('students.create')->with('success', 'Student has been successfully created');
@@ -101,7 +103,8 @@ class StudentController extends Controller
             'date_of_birth' => 'required|date:yyyy-mm-dd',
             'gender'        => 'required|not_in:0',
             'attachment'    => 'required',
-            'grade_id'      => 'required|not_in:0'
+            'grade_id'      => 'required|not_in:0',
+            'status'        => 'required|not_in:0'
         ]);
 
         $updateStudent = [
@@ -111,6 +114,7 @@ class StudentController extends Controller
             'gender'        => $request->gender,
             'attachment'    => $request->attachment,
             'grade_id'      => $request->grade_id,
+            'status'        => $request->status,
         ];
 
         $student = Student::findOrFail($id);

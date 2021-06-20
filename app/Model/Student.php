@@ -8,7 +8,7 @@ class Student extends Model
 {
     protected $table = 'students';
     protected $fillable = [
-        'nisn', 'name', 'date_of_birth', 'gender', 'attachment', 'grade_id'
+        'nisn', 'name', 'date_of_birth', 'gender', 'attachment', 'grade_id', 'status'
     ];
 
     public function grades()
