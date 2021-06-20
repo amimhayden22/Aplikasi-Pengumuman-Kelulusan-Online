@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Grade;
 use App\Model\Teacher;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,9 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        //
+        $grades = Grade::orderBy('name')->get();
+
+        return view('dashboard.teachers.create', compact('grades'));
     }
 
     /**
@@ -37,7 +40,17 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name'      => 'required',
+            'grade_id'  => 'required|not_in:0'
+        ]);
+
+        $createTeacher = Teacher::create([
+            'name'      => $request->name,
+            'grade_id'  => $request->grade_id,
+        ]);
+
+        return redirect()->route('teachers.create')->with('success', 'Teacher has been successfully created');
     }
 
     /**
@@ -59,7 +72,10 @@ class TeacherController extends Controller
      */
     public function edit($id)
     {
-        //
+        $editTeacher = Teacher::findOrFail($id);
+        $grades = Grade::orderBy('name')->get();
+
+        return view('dashboard.teachers.edit', compact('editTeacher', 'grades'));
     }
 
     /**
@@ -71,7 +87,20 @@ class TeacherController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name'      => 'required',
+            'grade_id'  => 'required|not_in:0'
+        ]);
+
+        $updateTeacher = [
+            'name'      => $request->name,
+            'grade_id'  => $request->grade_id,
+        ];
+
+        $teacher = Teacher::findOrFail($id);
+        $teacher->update($updateTeacher);
+
+        return redirect()->route('teachers.index')->with('success', 'Teacher name has been successfully updated');
     }
 
     /**
@@ -82,6 +111,9 @@ class TeacherController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleteTeacher = Teacher::findOrFail($id);
+        $deleteTeacher->delete();
+
+        return redirect()->route('teachers.index')->with('success', 'Teacher name has been successfully deleted');
     }
 }

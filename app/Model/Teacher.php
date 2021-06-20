@@ -10,4 +10,9 @@ class Teacher extends Model
     protected $fillable = [
         'name', 'grade_id'
     ];
+
+    public function grades()
+    {
+        return $this->belongsTo('App\Model\Grade', 'grade_id');
+    }
 }
