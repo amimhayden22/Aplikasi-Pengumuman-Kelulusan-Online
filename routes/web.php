@@ -16,6 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('frontend.index');
 });
+Route::get('/pengumuman', function () {
+    return view('frontend.nisn_check');
+});
+Route::get('/graduation', function () {
+    return view('frontend.graduation');
+});
+Route::post('/pengumuman/hasil', 'FrontEndController@cekPengumuman')->name('cek.pengumuman');
 
 Auth::routes();
 Route::middleware(['auth'])->group(function () {
