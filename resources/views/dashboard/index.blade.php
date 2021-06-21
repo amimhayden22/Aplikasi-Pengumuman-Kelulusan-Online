@@ -20,6 +20,7 @@ Dashboard
         </div>
       </div>
     </div>
+    @if (Auth::user()->role == 'Admin')
     <div class="row">
       <div class="col-lg-4 col-md-6 col-sm-6 col-12">
         <div class="card card-statistic-1">
@@ -67,6 +68,7 @@ Dashboard
         </div>
       </div>
     </div>
+    @endif
   </section>
 </div>
 @endsection

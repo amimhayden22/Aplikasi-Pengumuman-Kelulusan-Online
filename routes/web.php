@@ -27,12 +27,16 @@ Route::post('/pengumuman/hasil', 'FrontEndController@cekPengumuman')->name('cek.
 Auth::routes();
 Route::middleware(['auth'])->group(function () {
     Route::prefix('/dashboard')->group(function () {
-        Route::get('/', 'HomeController@index');
-        Route::resources([
-            'grades'    => GradeController::class,
-            'students'  => StudentController::class,
-            'teachers'  => TeacherController::class,
-            'users'     => UserController::class,
-        ]);
+        Route::middleware(['role.check:Admin,User'])->group(function () {
+            Route::get('/', 'HomeController@index');
+        });
+        Route::middleware(['role.check:Admin'])->group(function () {
+            Route::resources([
+                'grades'    => GradeController::class,
+                'students'  => StudentController::class,
+                'teachers'  => TeacherController::class,
+                'users'     => UserController::class,
+            ]);
+        });
     });
 });
