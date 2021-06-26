@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,12 +6,13 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title>Beranda - APeK Online</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <meta content="Aplikasi Pengumuman Kelulusan Online dibuat oleh Gus Khamim. Aplikasi ini bisa digunakan untuk pengumuman kelulusan anak kelas 12 sma/smk." name="description">
+  <meta content="Aplikasi Pengumuman Kelulusan, Aplikasi Pengumuman Kelulusan Laravel, Laravel, Gus Khamim" name="keywords">
+  <meta content="Gus Khamim" name="author">
 
   <!-- Favicons -->
-  <link href="frontend/assets/img/favicon.png" rel="icon">
-  <link href="frontend/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  {{-- <link href="frontend/assets/img/favicon.png" rel="icon"> --}}
+  {{-- <link href="frontend/assets/img/apple-touch-icon.png" rel="apple-touch-icon"> --}}
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -69,7 +69,7 @@
           <h2>Aplikasi Pengumuman Kelulusan Online</h2>
           <div class="d-flex">
             <a href="#about" class="btn-get-started scrollto">Tutorial</a>
-            <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox btn-watch-video" data-vbtype="video" data-autoplay="true"> Video Tutorial <i class="icofont-play-alt-2"></i></a>
+            <a href="https://www.youtube.com/watch?v=rN5Wzvcpprg" class="venobox btn-watch-video" data-vbtype="video" data-autoplay="true"> Video Tutorial <i class="icofont-play-alt-2"></i></a>
           </div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img">
